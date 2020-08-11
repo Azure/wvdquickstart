@@ -24,8 +24,8 @@ Dry run of the script
 .EXAMPLE
     Export-WVDCSEContentToBlob -ResourceGroupName "RG01" -StorageAccountName "storageaccount01"
 
-    Uploads files contained in the WVDScripts Repo folder and the files contained in the WVDScaling Repo folder
-    respectively to the "wvdscripts" blob container and to the "wvdScaling" blob container in the Storage Account "storageaccount01"
+    Uploads files contained in the WVDScripts Repo folder
+    respectively to the "wvdscripts" blob container in the Storage Account "storageaccount01"
     of the Resource Group "RG01"
 
 .EXAMPLE
@@ -58,10 +58,6 @@ function Export-WVDCSEContentToBlob {
             @{
                 sourcePath = 'WVDCSEZipToUpload'
                 targetBlob = 'wvdscripts'
-            },
-            @{
-                sourcePath = 'WVDScaling'
-                targetBlob = 'wvdscaling'
             }
         )
     )
