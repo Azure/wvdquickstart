@@ -5,7 +5,7 @@ filename: howto
 ---
 
 ## <b>How To Use The WVD QuickStart With an Empty Subscription</b>
-On this page, the process of using the WVD QuickStart with an empty Azure subscription is laid out from start to finish. The QuickStart will configure Windows Virtual Desktop as well as an Azure Active Directory Domain Services managed domain for you. All that is required is an empty Azure subscription as listed below, and after clicking one button, WVD will be ready for use within 2 hours. The video below shows a walkthrough of the entire deployment process.
+On this page, the process of using the WVD QuickStart with an empty Azure subscription is laid out from start to finish. If you don't have an Azure subscription yet, you can start a 30-day free trial <a href="https://azure.microsoft.com/en-us/" target="_blank">here</a>. The QuickStart will configure Windows Virtual Desktop as well as an Azure Active Directory Domain Services managed domain for you. All that is required is an empty Azure subscription as listed below, and after clicking one button, WVD will be ready for use within 2 hours. The video below shows a walkthrough of the entire deployment process.
 
 <iframe width="100%" height="441" src="https://www.youtube.com/embed/rhw6KoM0cJ8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -17,7 +17,7 @@ In order to successfully deploy a WVD environment with the QuickStart, the only 
 Additionally, the QuickStart will set up <a href="https://dev.azure.com" target="_blank">Azure DevOps</a> for you. This is not a prerequisite that requires action from you as the user, but it's good to be aware of the fact that this particular service will be leveraged in this automation. Once you have all of these prerequisites satisfied, <a href="https://youtu.be/Tz3KgruovYc?t=360" target="_blank">this video</a> will show you a walkthrough of the QuickStart deployment outlined below.
 
 ### <b>Get started: ARM Deployment - Azure AD DS & Azure DevOps Setup</b>
-Once you've satisfied all the prerequisites, you are ready to deploy using the QuickStart! As explained in the <a href="concepts">Concepts</a> section, the deployment consists of two main components: an Azure Resource Manager (ARM) deployment and an Azure DevOps (ADO) pipeline. The first of the two will deploy a number of resources supporting the deployment automation, including the creation of an Azure AD DS managed domain, to which the WVD virtual machines will be 'domain-joined', as well as an Azure DevOps project and automation pipeline. By clicking the "Deploy to Azure" button, you will be taken to the Azure Portal for a custom deployment. There, you can fill out the required user input and click *purchase*. 
+Once you've satisfied all the prerequisites, you are ready to deploy using the QuickStart! As explained in the <a href="concepts">Concepts</a> section, the deployment consists of two main components: an Azure Resource Manager (ARM) deployment and an Azure DevOps (ADO) pipeline. The first of the two will deploy a number of resources supporting the deployment automation, including the creation of an Azure AD DS managed domain, to which the WVD virtual machines will be 'domain-joined', as well as an Azure DevOps project and automation pipeline. By clicking the "Deploy to Azure" button, you will be taken to the Azure Portal for a custom deployment. There, you can fill out the required user input and click *purchase*. It is recommended that you create a new resource group for the QuickStart to deploy in, as this will make it easier to delete its resources.
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https:%2F%2Fraw.githubusercontent.com%2FAzure%2Fwvdquickstart%2Fmain%2FNewSubAADDSSetup%2Fdeploy.json" target="_blank">
     <img src="https://aka.ms/deploytoazurebutton"/>
@@ -52,3 +52,10 @@ In the automation, the QuickStart creates an administrator account (member of th
 
 Username: domainJoiner@{your-domain}.com <br>
 Password: The same as your Azure admin account password (that you entered in the initial ARM deployment)
+
+### <b>Deleting the WVD environment and the QuickStart resources </b>
+In case you want to delete your WVD environment and all the QuickStart resources from your Azure subscription, there's a couple of steps to take. First, you can delete the resource gorup that the QuickStart was deployed in. This will delete your WVD environment and most of the QuickStart resources. Then, in the Azure portal, 
+* Go to Azure Active Directory --> App registrations and remove the "WVDServicePrincipal"
+* Go to Azure Active Directory --> Groups and remove the "WVDTestUsers" group
+* Go to Azure Active Directory --> Users and remove the "WVDTestUser001" user profile
+* Navigate to <a href="https://dev.azure.com" target="_blank">Azure DevOps</a> and delete the WVD QuickStart organization by going to the organization's settings and scrolling to the bottom of the page.
