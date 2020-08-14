@@ -268,7 +268,7 @@ write-output $url
 # It is possible at this point that the push has not completed yet. Logic below allows for 1 minute of waiting before timing out. 
 $currentTry = 0
 do {
-    Start-Sleep -Seconds 2
+    Start-Sleep -Seconds 10
     $response = Invoke-RestMethod -Uri $url -Headers @{Authorization = "Basic $token"} -Method Get
     write-output $response
     $currentTry++
