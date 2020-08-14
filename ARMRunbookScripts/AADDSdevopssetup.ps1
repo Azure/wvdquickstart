@@ -287,7 +287,7 @@ $principalIds = $split[0]
 Write-Output "Found user group $targetGroup with principal Id $principalIds"
 
 # Get ID of the commit we just pushed, needed for the next commit below
-$url = $("https://dev.azure.com/" + $orgName + "/" + $projectName + "/_apis/git/repositories/" + $projectName + "/refs?filter=heads/master&api-version=5.1")
+$url = $("https://dev.azure.com/" + $orgName + "/" + $projectName + "/_apis/git/repositories/" + $projectName + "/refs?filter=heads/main&api-version=5.1")
 write-output $url
 
 # It is possible at this point that the push has not completed yet. Logic below allows for 1 minute of waiting before timing out. 
@@ -352,7 +352,7 @@ $body = @"
 {
   "refUpdates": [
     {
-      "name": "refs/heads/master",
+      "name": "refs/heads/main",
       "oldObjectId": "$($response.value.objectId)"
     }
   ],
