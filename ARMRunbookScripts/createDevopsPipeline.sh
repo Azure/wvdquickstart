@@ -15,4 +15,4 @@ az logout
 az login -u ${3} -p $secret
 
 az extension add --name azure-devops
-az pipelines create --name "WVD QuickStart" --organization "https://dev.azure.com/${1}" --project ${2} --repository ${2} --repository-type "tfsgit" --branch "master" --yml-path "QS-WVD/pipeline.yml"
+az pipelines create --name "WVD QuickStart" --organization "https://dev.azure.com/${1}" --project ${2} --repository ${2} --repository-type "tfsgit" --branch "main" --yml-path "QS-WVD/pipeline.yml"
